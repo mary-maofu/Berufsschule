@@ -1,29 +1,30 @@
-# riot-api-project
+# Riot API Project
 
-This template should help get you started developing with Vue 3 in Vite.
+## Beschreibung
 
-## Recommended IDE Setup
+Dieses Projekt verwendet die Riot Games API, um Benutzerdaten abzurufen, einschließlich gespielter Spiele, Rang und anderer relevanter Informationen von verschiedenen Konten in Spielen wie League of Legends.
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+## Inhaltsverzeichnis
 
-## Customize configuration
+- [Installation](#installation)
+- [Benutzung](#usage)
+- [Configuration](#configuration)
+- [Endpoints](#endpoints)
+- [Rate Limits](#rate-limits)
+- [Authentication](#authentication)
+- [Examples](#examples)
+- [License](#license)
+- [Contributing](#contributing)
+- [Acknowledgments](#acknowledgments)
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+## Installation
 
-## Project Setup
+1. Clone the repository:
 
-```sh
-npm install
-```
+   ```bash
+   git clone https://github.com/yourusername/riot-api-project.git
 
-### Compile and Hot-Reload for Development
+## Install dependencies:
 
-```sh
-npm run dev
-```
-
-### Compile and Minify for Production
-
-```sh
-npm run build
-```
+    ```bash
+    npm install
