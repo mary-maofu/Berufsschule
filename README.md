@@ -6,25 +6,31 @@ Dieses Projekt verwendet die Riot Games API, um Benutzerdaten abzurufen, einschl
 
 ## Inhaltsverzeichnis
 
+- [Systemanforderungen und Voraussetzungen](#systemanforderungen)
 - [Installation](#installation)
 - [Benutzung](#usage)
 - [Configuration](#configuration)
-- [Endpoints](#endpoints)
-- [Rate Limits](#rate-limits)
-- [Authentication](#authentication)
-- [Examples](#examples)
-- [License](#license)
 - [Contributing](#contributing)
-- [Acknowledgments](#acknowledgments)
+
+
+## Systemanforderungen
+
+Um dieses Projekt Lokal einzurichten sind ein paar Tools gebraucht:
+- Entwicklungsumgebung (IDE)
+- npm (Package Manager)
+- Vue.js (Installation mit npm) -> https://vuejs.org/guide/quick-start
+- Browser (Testing)
 
 ## Installation
 
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/yourusername/riot-api-project.git
+   git clone https://it12d.git.bs1-ke.de/[Username]/riot-games-project.git
 
 ## Install dependencies:
+
+2. Abhängigkeiten:
 
     ```bash
     npm install
