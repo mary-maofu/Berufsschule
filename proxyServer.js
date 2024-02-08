@@ -11,11 +11,9 @@ const API_KEY = "RGAPI-11222b12-104e-4326-be33-0b007d5820ac";
 //get puuid from riot id
 app.get('/searchPlayer/:gameName/:tagLine', async (req, res) => {
     const { gameName, tagLine } = req.params;
-
     try {
         // Make a request to the Riot Games API
         const response = await axios.get(`https://europe.api.riotgames.com/riot/account/v1/accounts/by-riot-id/${gameName}/${tagLine}?api_key=${API_KEY}`);
-
         // Return the response data to the client
         res.json(response.data);
     } catch (error) {
@@ -24,6 +22,19 @@ app.get('/searchPlayer/:gameName/:tagLine', async (req, res) => {
         res.status(500).json({ error: 'Internal Server Error' });
     }
 });
+// get info by puuid
+app.get('/getSummonerInfo/:puuid', async (req, res) => {
+    const { puuid } = req.params;
+
+    try {
+        const summonerInfoResponse = await axios.get(`https://euw1.api.riotgames.com/lol/summoner/v4/summoners/by-puuid/${puuid}?api_key=${API_KEY}`);
+        res.json(summonerInfoResponse.data); // Corrected from response.data to summonerInfoResponse.data
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
+
 
 
 /*
