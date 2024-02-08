@@ -1,6 +1,10 @@
 <template>
   <div id="app">
-    <Search /> 
+    <div class="container">
+    <div class="content">
+      <Search />
+    </div>
+  </div>
   </div>
 </template>
 
@@ -15,6 +19,8 @@ export default {
 }
 </script>
 
-<style>
-/* Add your styles here if needed */
+<style lang="scss">
+.container{
+  padding: 13% 0 50px 0;
+}
 </style>
