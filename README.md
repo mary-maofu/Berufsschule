@@ -20,6 +20,7 @@ Um dieses Projekt Lokal einzurichten sind ein paar Tools gebraucht:
 - npm (Package Manager)
 - Vue.js (Installation mit npm) -> https://vuejs.org/guide/quick-start
 - Browser (Testing)
+- Chrome Extension: Allow CORS: Access-Control-Allow-Origin -> https://chrome.google.com/webstore/detail/allow-cors-access-control/lhobafahddgcelffkeicbaginigeejlf
 
 ## Installation
 
@@ -34,3 +35,15 @@ Um dieses Projekt Lokal einzurichten sind ein paar Tools gebraucht:
 
     ```bash
     npm install
+
+## Projekt Starten:
+
+3. Starten Sie das Projekt:
+
+    ```bash
+    npm run dev
+
+4. Server starten (cors errors umgehen):
+
+    ```bash
+    npm start
