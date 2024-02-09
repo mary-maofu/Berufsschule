@@ -12,7 +12,6 @@
 <script>
 import playerProfile from './playerProfile.vue';
 import axios from 'axios';
-const API_KEY = "RGAPI-11222b12-104e-4326-be33-0b007d5820ac";
 
 export default {
   components: {
