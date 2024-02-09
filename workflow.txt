@@ -1,3 +1,26 @@
 Server Setup: proxyServer -> fixes Riot API Cors errors -> can be used to make requests to the Riot API
 start server with npm start to avoid cors errors
-```
+
+routes: have to be required in the proxyserver.js file
+and then added to the app.use() function
+*/
+
+
+
+mby:
+
+
+    /* getPlayerGames(event) {
+      axios.get("http://localhost:4000/past5games")
+          .then(response => {
+            this.gameList = response.data; // Update gameList with response data
+            console.log(this.gameList);
+          })
+          .catch(error => {
+            console.error(error);
+          });
+      console.log(this.gameList);
+    } */
+
+
+

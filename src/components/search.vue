@@ -5,7 +5,7 @@
       <input class="mt-2 mb-2 rounded-3" type="text" v-model="searchText" @keyup.enter="searchAndFetchInfo" />
       <button class="btn-15 custom-btn" @click="searchAndFetchInfo">Search for player</button>
     </div>
-    <playerProfile v-if="searchPerformed" :gameName="gameName" :tagLine="tagLine" :summonerData="summonerData" :summonerLevel="summonerLevel" :profileIconId="profileIconId" />
+    <playerProfile v-if="searchPerformed" :queueType="queueType" :tier="tier" :id="id" :wins="wins" :losses="losses" :rank="rank" :gameName="gameName" :tagLine="tagLine" :summonerData="summonerData" :summonerLevel="summonerLevel" :profileIconId="profileIconId" />
   </div>
 </template>
 
@@ -22,8 +22,14 @@ export default {
       searchText: '',
       gameName: '',
       tagLine: '',
+      id: '',
       puuid: '',
       accountId: '',
+      wins: '',
+      losses: '',
+      rank: '',
+      tier: '',
+      queueType: '',
       profileIconId: null,
       summonerData: null,
       summonerLevel: null,
@@ -62,13 +68,15 @@ export default {
         console.error('puuid is not set');
         return;
       }
-
       axios.get(`http://localhost:4000/getSummonerInfo/${this.puuid}`)
           .then(response => {
-            //set data to be used in playerProfile
+            // Set data to be used in playerProfile
             this.summonerLevel = response.data.summonerLevel;
             this.profileIconId = response.data.profileIconId;
+            this.id = response.data.id;
             console.log(response.data);
+            // Call getInfoBySumId() after setting id
+            this.getInfoBySumId();
             // Handle the response as needed
           })
           .catch(error => {
@@ -76,23 +84,60 @@ export default {
           });
     },
 
-    searchAndFetchInfo() {
-      this.searchForPlayer(); // First, search for player
-    }
-    /* getPlayerGames(event) {
-      axios.get("http://localhost:4000/past5games")
+    getInfoBySumId() {
+      if (!this.id) {
+        console.error('id is not set');
+        return;
+      }
+      axios.get(`http://localhost:4000/getSummonerLeague/${this.id}`)
           .then(response => {
-            this.gameList = response.data; // Update gameList with response data
-            console.log(this.gameList);
+            // Check if response.data is an array and has at least one element
+            if (Array.isArray(response.data) && response.data.length > 0) {
+              const leagueData = response.data[0]; // Access the first (and only) element of the array
+              // Set data to be used in playerProfile
+              this.wins = leagueData.wins;
+              this.losses = leagueData.losses;
+              this.rank = leagueData.rank;
+              this.tier = leagueData.tier;
+              this.queueType = leagueData.queueType;
+              console.log(leagueData);
+              // Handle the response as needed
+            } else {
+              console.error('No league data available');
+            }
           })
           .catch(error => {
             console.error(error);
           });
-      console.log(this.gameList);
-    } */
+    },
+    searchAndFetchInfo() {
+      this.searchForPlayer(); // First, search for player
+    }
   }
 }
 </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 <style lang="scss">
 .search {
