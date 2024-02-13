@@ -5,17 +5,19 @@
       <input class="mt-2 mb-2 rounded-3" type="text" v-model="searchText" @keyup.enter="searchAndFetchInfo" />
       <button class="btn-15 custom-btn" @click="searchAndFetchInfo">Search for player</button>
     </div>
-    <playerProfile v-if="searchPerformed" :queueType="queueType" :tier="tier" :id="id" :wins="wins" :losses="losses" :rank="rank" :gameName="gameName" :tagLine="tagLine" :summonerData="summonerData" :summonerLevel="summonerLevel" :profileIconId="profileIconId" />
+    <playerProfile v-if="searchPerformed" :queueType="queueType" :tier="tier" :id="id" :wins="wins" :losses="losses" :rank="rank" :gameName="gameName" :tagLine="tagLine" :summonerData="summonerData" :summonerLevel="summonerLevel" :profileIconId="profileIconId" :puuid="puuid" />
   </div>
 </template>
 
 <script>
 import playerProfile from './playerProfile.vue';
+import getMatches from './getMatches.vue';
 import axios from 'axios';
 
 export default {
   components: {
-    playerProfile
+    playerProfile,
+    getMatches,
   },
   data() {
     return {
@@ -25,15 +27,14 @@ export default {
       id: '',
       puuid: '',
       accountId: '',
-      wins: '',
-      losses: '',
+      wins: 0,
+      losses: 0,
       rank: '',
       tier: '',
       queueType: '',
       profileIconId: null,
       summonerData: null,
       summonerLevel: null,
-      gameList: [], // Declare gameList as a reactive data property
       searchPerformed: false // Track whether search has been performed
     };
   },
@@ -112,7 +113,8 @@ export default {
     },
     searchAndFetchInfo() {
       this.searchForPlayer(); // First, search for player
-    }
+    },
+
   }
 }
 </script>

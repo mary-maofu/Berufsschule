@@ -2,7 +2,7 @@
   <div class="playerProfile">
     <div v-if="summonerData">
       <h2>{{ gameName }}#{{ tagLine }}</h2>
-      <img :src="'http://ddragon.leagueoflegends.com/cdn/11.6.1/img/profileicon/' + profileIconId + '.png'" alt="Profile Icon">
+      <img :src="'http://ddragon.leagueoflegends.com/cdn/14.3.1/img/profileicon/' + profileIconId + '.png'" alt="Profile Icon">
       <p>Summoner Level: {{ summonerLevel }}</p>
       <p>Queue Type: {{ queueType }}</p>
       <p>Wins: {{ wins }}</p>
@@ -14,11 +14,17 @@
     <div v-else>
       <p>No summoner data available</p>
     </div>
+    <getMatches ref="getMatches" :puuid="puuid" />
   </div>
+
 </template>
 
 <script>
+import getMatches from './getMatches.vue';
 export default {
+  components: {
+    getMatches
+  },
   name: 'PlayerProfile',
   props: {
     summonerData: {
@@ -60,6 +66,10 @@ export default {
     queueType: {
       type: String,
       default: ''
+    },
+    puuid: {
+      type: String,
+      default: ''
     }
   },
   methods: {
@@ -70,7 +80,11 @@ export default {
       }
       const winRate = (wins / totalGames) * 100;
       return winRate.toFixed(2); // Return win rate rounded to 2 decimal places
+    },
+    getMatches(){
+      this.$refs.getMatches.getMatches();
     }
-  }
+  },
+
 };
 </script>
