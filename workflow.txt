@@ -6,21 +6,3 @@ and then added to the app.use() function
 */
 
 
-
-mby:
-
-
-    /* getPlayerGames(event) {
-      axios.get("http://localhost:4000/past5games")
-          .then(response => {
-            this.gameList = response.data; // Update gameList with response data
-            console.log(this.gameList);
-          })
-          .catch(error => {
-            console.error(error);
-          });
-      console.log(this.gameList);
-    } */
-
-
-

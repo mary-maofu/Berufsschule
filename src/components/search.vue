@@ -1,14 +1,21 @@
 <template>
-  <div class="search">
-    <div class="container">
-      <h5>Player Searcher</h5>
-      <input class="mt-2 mb-2 rounded-3" type="text" v-model="searchText" @keyup.enter="searchAndFetchInfo" />
-      <button class="btn-15 custom-btn" @click="searchAndFetchInfo">Search for player</button>
+  <div>
+    <div v-if="!searchPerformed" class="search">
+      <div class="container">
+        <h5>Player Searcher</h5>
+        <input class="mt-2 mb-2 rounded-3" type="text" v-model="searchText" @keyup.enter="searchAndFetchInfo" />
+        <button class="btn-15 custom-btn" @click="searchAndFetchInfo">Search for player</button>
+      </div>
     </div>
-    <playerProfile v-if="searchPerformed" :queueType="queueType" :tier="tier" :id="id" :wins="wins" :losses="losses" :rank="rank" :gameName="gameName" :tagLine="tagLine" :summonerData="summonerData" :summonerLevel="summonerLevel" :profileIconId="profileIconId" :puuid="puuid" />
+    <div v-if="searchPerformed" class="container">
+      <!-- Content to display after search -->
+      <div class="nav-search">
+
+      </div>
+      <playerProfile v-if="searchPerformed" :queueType="queueType" :tier="tier" :id="id" :wins="wins" :losses="losses" :rank="rank" :gameName="gameName" :tagLine="tagLine" :summonerData="summonerData" :summonerLevel="summonerLevel" :profileIconId="profileIconId" :puuid="puuid" />
+    </div>
   </div>
 </template>
-
 <script>
 import playerProfile from './playerProfile.vue';
 import getMatches from './getMatches.vue';
@@ -120,27 +127,6 @@ export default {
 </script>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <style lang="scss">
 .search {
   .container {
@@ -149,56 +135,13 @@ export default {
     align-items: center;
     h5 {
       font-size: 22px;
+      margin-top: 20rem;
     }
 
     input {
       padding: 8px;
       width: 50rem;
     }
-
-    .custom-btn {
-      color: #000000;
-      border-radius: 5px;
-      padding: 10px 25px;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      position: relative;
-      display: inline-block;
-      box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5),
-      7px 7px 20px 0px rgba(0,0,0,.1),
-      4px 4px 5px 0px rgba(0,0,0,.1);
-      outline: none;
-    }
-
-    .btn-15 {
-      background: #ffa7d1;
-      border: none;
-      z-index: 1;
-    }
-    .btn-15:after {
-      position: absolute;
-      content: "";
-      width: 0;
-      height: 100%;
-      top: 0;
-      right: 0;
-      z-index: -1;
-      background-color: #ff86b9;
-      border-radius: 5px;
-      box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5),
-      7px 7px 20px 0px rgba(0,0,0,.1),
-      4px 4px 5px 0px rgba(0,0,0,.1);
-      transition: all 0.5s ease;
-    }
-    .btn-15:hover:after {
-      left: 0;
-      width: 100%;
-    }
-    .btn-15:active {
-      top: 2px;
-    }
-
-
   }
 }
 </style>

@@ -6,16 +6,19 @@
       <p>Game Mode: {{ match.gameMode }}</p>
       <p>Game Duration: {{ match.gameDuration }}</p>
       <p>Game Type: {{ match.gameType }}</p>
+      <div v-for="team in match.teams" :key="team.win">
+        <p>Team Win: {{ team.win }}</p>
+      </div>
       <div v-for="participant in match.participants" :key="participant.summonerName">
         <img :src="getChampionIcon(participant.championId)" :alt="participant.championName" width="50" height="50">
+        <p>Summoner Name: {{ participant.summonerName }}</p>
         <p>Champion Name: {{ participant.championName }}</p>
         <p>Kills: {{ participant.kills }}</p>
         <p>Deaths: {{ participant.deaths }}</p>
         <p>Assists: {{ participant.assists }}</p>
-      </div>
-      <div v-for="team in match.teams" :key="team.win">
-        <p>Team Win: {{ team.win }}</p>
-<!--        <p>Bans: {{ team.bans }}</p>-->
+        <div v-for="item in participant.items" :key="item">
+          <img v-if="item !== 0" :src="getItemIcon(item)" :alt="item" width="50" height="50">
+        </div>
       </div>
     </div>
   </div>
@@ -57,7 +60,17 @@ export default {
     getChampionIcon(championId) {
       // Return the champion icon URL from Community Dragon API
       return `https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/${championId}.png`;
+    },
+    getItemIcon(itemId) {
+      // If itemId is 0, return null to skip displaying it
+      if (itemId === 0) {
+        return null;
+      }
+      // Return the item icon URL from Riot API (DDragon)
+      return `http://ddragon.leagueoflegends.com/cdn/14.3.1/img/item/${itemId}.png`;
     }
+
+
   }
 }
 </script>

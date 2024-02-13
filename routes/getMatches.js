@@ -35,6 +35,15 @@ module.exports = (API_KEY) => {
                         kills: participant.kills,
                         assists: participant.assists,
                         championId: participant.championId,
+                        items: [
+                            participant.item0,
+                            participant.item1,
+                            participant.item2,
+                            participant.item3,
+                            participant.item4,
+                            participant.item5,
+                            participant.item6
+                        ],
                     })),
                     teams: matchResponse.data.info.teams.map(team => ({
                         win: team.win,
