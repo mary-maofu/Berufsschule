@@ -1,8 +1,9 @@
 <template>
   <div class="playerProfile">
+    <div class="left">
     <div v-if="summonerData">
       <h2>{{ gameName }}#{{ tagLine }}</h2>
-      <img :src="'http://ddragon.leagueoflegends.com/cdn/14.3.1/img/profileicon/' + profileIconId + '.png'" alt="Profile Icon">
+      <img :src="'http://ddragon.leagueoflegends.com/cdn/14.3.1/img/profileicon/' + profileIconId + '.png'" alt="Profile Icon" class="profileicon">
       <p>Summoner Level: {{ summonerLevel }}</p>
       <p>Queue Type: {{ queueType }}</p>
       <p>Wins: {{ wins }}</p>
@@ -14,7 +15,10 @@
     <div v-else>
       <p>No summoner data available</p>
     </div>
+    </div>
+    <div class="right">
     <getMatches ref="getMatches" :puuid="puuid" />
+    </div>
   </div>
 
 </template>
@@ -48,23 +52,23 @@ export default {
       default: ''
     },
     wins: {
-      type: Number,
+      type: Array,
       default: 0
     },
     losses: {
-      type: Number,
+      type: Array,
       default: 0
     },
     rank: {
-      type: String,
+      type: Array,
       default: ''
     },
     tier: {
-      type: String,
+      type: Array,
       default: ''
     },
     queueType: {
-      type: String,
+      type: Array,
       default: ''
     },
     puuid: {

@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <navbar />
-    <div class="container">
+    <div class="search-container">
     <div class="content">
       <Search />
     </div>
@@ -28,7 +28,7 @@ export default {
 #app{
   height: 100vh;
 }
-.container{
-  margin-bottom: 19%;
+.search-container{
+  margin-bottom: 18%;
 }
 </style>

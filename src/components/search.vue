@@ -1,9 +1,9 @@
 <template>
   <div>
     <div v-if="!searchPerformed" class="search">
-      <div class="container">
-        <h5>Player Searcher</h5>
-        <input class="mt-2 mb-2 rounded-3" type="text" v-model="searchText" @keyup.enter="searchAndFetchInfo" />
+      <div class="search-area">
+        <h2>PlayerInsights</h2>
+        <input class="mb-4 fa-search mt-2 mb-2 rounded-3" placeholder="  &#x1F50D;  Search" type="text" v-model="searchText" @keyup.enter="searchAndFetchInfo" />
         <button class="btn-15 custom-btn" @click="searchAndFetchInfo">Search for player</button>
       </div>
     </div>
@@ -34,11 +34,11 @@ export default {
       id: '',
       puuid: '',
       accountId: '',
-      wins: 0,
-      losses: 0,
-      rank: '',
-      tier: '',
-      queueType: '',
+      wins: [],
+      losses: [],
+      rank: [],
+      tier: [],
+      queueType: [],
       profileIconId: null,
       summonerData: null,
       summonerLevel: null,
@@ -91,7 +91,6 @@ export default {
             console.error(error);
           });
     },
-
     getInfoBySumId() {
       if (!this.id) {
         console.error('id is not set');
@@ -101,14 +100,23 @@ export default {
           .then(response => {
             // Check if response.data is an array and has at least one element
             if (Array.isArray(response.data) && response.data.length > 0) {
-              const leagueData = response.data[0]; // Access the first (and only) element of the array
-              // Set data to be used in playerProfile
-              this.wins = leagueData.wins;
-              this.losses = leagueData.losses;
-              this.rank = leagueData.rank;
-              this.tier = leagueData.tier;
-              this.queueType = leagueData.queueType;
-              console.log(leagueData);
+              // Initialize arrays to store league data
+              this.wins = [];
+              this.losses = [];
+              this.rank = [];
+              this.tier = [];
+              this.queueType = [];
+
+              // Iterate over each league entry in the response
+              response.data.forEach(leagueData => {
+                // Push data for each league entry into corresponding arrays
+                this.wins.push(leagueData.wins);
+                this.losses.push(leagueData.losses);
+                this.rank.push(leagueData.rank);
+                this.tier.push(leagueData.tier);
+                this.queueType.push(leagueData.queueType);
+              });
+              console.log(response.data); // Optional: Log the entire league data array
               // Handle the response as needed
             } else {
               console.error('No league data available');
@@ -118,6 +126,7 @@ export default {
             console.error(error);
           });
     },
+
     searchAndFetchInfo() {
       this.searchForPlayer(); // First, search for player
     },
@@ -129,18 +138,22 @@ export default {
 
 <style lang="scss">
 .search {
-  .container {
+  .search-area {
     display: flex;
     flex-flow: column;
     align-items: center;
-    h5 {
-      font-size: 22px;
-      margin-top: 20rem;
+
+    h2 {
+      margin-top: 19rem;
     }
 
     input {
-      padding: 8px;
+      padding: 12px;
       width: 50rem;
+    }
+
+    input:focus::placeholder {
+      color: transparent;
     }
   }
 }

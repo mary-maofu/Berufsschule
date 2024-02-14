@@ -1,5 +1,6 @@
 <template>
   <div>
+    <div class="container">
     <nav>
       <ul>
         <li v-for="(item, index) in items" :key="index">
@@ -10,6 +11,7 @@
         </li>
       </ul>
     </nav>
+    </div>
   </div>
 </template>
 
@@ -44,7 +46,7 @@ ul {
   margin: 0;
   padding: 0;
   display: flex;
-  column-gap: 5rem;
+  column-gap: 8rem;
   align-items: center;
 }
 

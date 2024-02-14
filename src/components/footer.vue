@@ -27,7 +27,7 @@ export default {
 footerarea {
   height: 4.5rem;
   bottom: 0;
-  color: white;
+  color: #aea8a8;
   padding: 20px;
   text-align: center;
 }
@@ -44,7 +44,7 @@ li {
 }
 
 a {
-  color: white;
+  color: #aea8a8;
   text-decoration: none;
 }
 

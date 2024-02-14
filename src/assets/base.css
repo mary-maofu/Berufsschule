@@ -2,7 +2,8 @@
 body{
   background-color: #25252a;
   color: #fff;
-
+  font-family: "Manjari", sans-serif;
+  /*buttons*/
   .custom-btn {
     color: #000000;
     border-radius: 5px;
@@ -45,5 +46,27 @@ body{
   .btn-15:active {
     top: 2px;
   }
+  /*fonts*/
 
+  .manjari-thin {
+    font-family: "Manjari", sans-serif;
+    font-weight: 100;
+    font-style: normal;
+  }
+
+  .manjari-regular {
+    font-family: "Manjari", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+
+  .manjari-bold {
+    font-family: "Manjari", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+  }
+  h1{
+    font-size: 3rem;
+    font-weight: 700;
+  }
 }

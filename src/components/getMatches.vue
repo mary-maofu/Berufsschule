@@ -1,6 +1,7 @@
 <template>
   <div class="getMatches">
     <button class="btn-15 custom-btn" @click="getMatches">Get Matches</button>
+    <div class="match">
     <div v-for="match in matchList" :key="match.gameId">
       <h2>{{ match.gameId }}</h2>
       <p>Game Mode: {{ match.gameMode }}</p>
@@ -9,17 +10,23 @@
       <div v-for="team in match.teams" :key="team.win">
         <p>Team Win: {{ team.win }}</p>
       </div>
+
       <div v-for="participant in match.participants" :key="participant.summonerName">
+        <div class="participant">
         <img :src="getChampionIcon(participant.championId)" :alt="participant.championName" width="50" height="50">
         <p>Summoner Name: {{ participant.summonerName }}</p>
         <p>Champion Name: {{ participant.championName }}</p>
-        <p>Kills: {{ participant.kills }}</p>
-        <p>Deaths: {{ participant.deaths }}</p>
-        <p>Assists: {{ participant.assists }}</p>
+        <div class="kda">
+          <p>KDA : &nbsp; {{ participant.kills }} / {{ participant.deaths }} / {{ participant.assists }}</p>
+        </div>
+        <div class="items">
         <div v-for="item in participant.items" :key="item">
           <img v-if="item !== 0" :src="getItemIcon(item)" :alt="item" width="50" height="50">
         </div>
+        </div>
       </div>
+    </div>
+    </div>
     </div>
   </div>
 </template>
@@ -69,8 +76,6 @@ export default {
       // Return the item icon URL from Riot API (DDragon)
       return `http://ddragon.leagueoflegends.com/cdn/14.3.1/img/item/${itemId}.png`;
     }
-
-
   }
 }
 </script>
