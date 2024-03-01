@@ -5,13 +5,15 @@
       <h2>{{ gameName }}#{{ tagLine }}</h2>
       <img :src="'http://ddragon.leagueoflegends.com/cdn/14.3.1/img/profileicon/' + profileIconId + '.png'" alt="Profile Icon" class="profileicon">
       <p>Summoner Level: {{ summonerLevel }}</p>
-      <p>Queue Type: {{ queueType }}</p>
-      <p>Wins: {{ wins }}</p>
-      <p>Losses: {{ losses }}</p>
-      <img :src="'src/components/icons/ranks/' + tier + '.png'" alt="Rank Icon">
-      <p>Rank: {{ tier }} {{ rank }}</p>
-      <p>Win Rate: {{ calculateWinRate(wins, losses) }}%</p>
-    </div>
+      <div v-for="(entry, index) in leagueEntries" :key="index" class="league-entry">
+  <p>Queue Type: {{ entry.queueType }}</p>
+  <p>Wins: {{ entry.wins }}</p>
+  <p>Losses: {{ entry.losses }}</p>
+  <img :src="'src/components/icons/ranks/' + entry.tier + '.png'" alt="Rank Icon">
+  <p>Rank: {{ entry.tier }} {{ entry.rank }}</p>
+  <p>Win Rate: {{ calculateWinRate(entry.wins, entry.losses) }}%</p>
+</div>
+</div>
     <div v-else>
       <p>No summoner data available</p>
     </div>
@@ -19,6 +21,8 @@
     <div class="right">
     <getMatches ref="getMatches" :puuid="puuid" />
     </div>
+
+
   </div>
 
 </template>
@@ -31,6 +35,10 @@ export default {
   },
   name: 'PlayerProfile',
   props: {
+    leagueEntries: {
+    type: Array,
+    default: () => []
+  },
     summonerData: {
       type: Object,
       default: null
@@ -52,23 +60,23 @@ export default {
       default: ''
     },
     wins: {
-      type: Array,
+      type: Number,
       default: 0
     },
     losses: {
-      type: Array,
+      type: Number,
       default: 0
     },
     rank: {
-      type: Array,
+      type: String,
       default: ''
     },
     tier: {
-      type: Array,
+      type: String,
       default: ''
     },
     queueType: {
-      type: Array,
+      type: String,
       default: ''
     },
     puuid: {

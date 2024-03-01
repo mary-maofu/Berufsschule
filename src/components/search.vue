@@ -12,7 +12,15 @@
       <div class="nav-search">
 
       </div>
-      <playerProfile v-if="searchPerformed" :queueType="queueType" :tier="tier" :id="id" :wins="wins" :losses="losses" :rank="rank" :gameName="gameName" :tagLine="tagLine" :summonerData="summonerData" :summonerLevel="summonerLevel" :profileIconId="profileIconId" :puuid="puuid" />
+      <playerProfile
+  v-if="searchPerformed"
+  :leagueEntries="leagueEntries"
+  :gameName="gameName"
+  :tagLine="tagLine"
+  :summonerData="summonerData"
+  :summonerLevel="summonerLevel"
+  :profileIconId="profileIconId"
+  :puuid="puuid" />
     </div>
   </div>
 </template>
@@ -28,6 +36,7 @@ export default {
   },
   data() {
     return {
+      leagueEntries: [],
       searchText: '',
       gameName: '',
       tagLine: '',
@@ -106,6 +115,14 @@ export default {
               this.rank = [];
               this.tier = [];
               this.queueType = [];
+              this.leagueEntries = response.data.map(leagueData => ({
+  wins: leagueData.wins,
+  losses: leagueData.losses,
+  rank: leagueData.rank,
+  tier: leagueData.tier,
+  queueType: leagueData.queueType,
+}));
+
 
               // Iterate over each league entry in the response
               response.data.forEach(leagueData => {
