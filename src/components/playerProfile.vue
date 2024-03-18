@@ -1,5 +1,5 @@
 <template>
-  <div class="playerProfile">
+  <div class="playerProfile mt-5">
     <div class="left">
     <div v-if="summonerData">
       <h2>{{ gameName }}#{{ tagLine }}</h2>

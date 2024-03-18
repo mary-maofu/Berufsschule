@@ -10,12 +10,17 @@
       <div v-for="team in match.teams" :key="team.win">
         <p>Team Win: {{ team.win }}</p>
       </div>
-
+<div class="players-match d-flex">
       <div v-for="participant in match.participants" :key="participant.summonerName">
         <div class="participant">
-        <img :src="getChampionIcon(participant.championId)" :alt="participant.championName" width="50" height="50">
-        <p>Summoner Name: {{ participant.summonerName }}</p>
-        <p>Champion Name: {{ participant.championName }}</p>
+          <div class="profile d-flex">
+            <img :src="getChampionIcon(participant.championId)" :alt="participant.championName" width="60" height="60">
+            <div class="names">
+            <p>Summoner Name: {{ participant.summonerName }}</p>
+            <p>Played: {{ participant.championName }}</p>
+            </div>
+          </div>
+
         <div class="kda">
           <p>KDA : &nbsp; {{ participant.kills }} / {{ participant.deaths }} / {{ participant.assists }}</p>
         </div>
@@ -25,6 +30,7 @@
         </div>
         </div>
       </div>
+    </div>
     </div>
     </div>
     </div>
@@ -81,5 +87,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-/* Add your scoped styles here */
+.players-match{
+  flex-flow: wrap;
+}
 </style>
