@@ -70,3 +70,16 @@ body{
     font-weight: 700;
   }
 }
+
+.container{
+  max-width: 1075px;
+}
+
+.card{
+  background-color: #25252a;
+  color: white;
+  border: none;
+}
+.card-header{
+  border: none;
+}

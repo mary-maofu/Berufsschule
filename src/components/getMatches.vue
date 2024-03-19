@@ -24,7 +24,7 @@
         <div class="kda">
           <p>KDA : &nbsp; {{ participant.kills }} / {{ participant.deaths }} / {{ participant.assists }}</p>
         </div>
-        <div class="items">
+        <div class="items d-flex me-5 mb-5">
         <div v-for="item in participant.items" :key="item">
           <img v-if="item !== 0" :src="getItemIcon(item)" :alt="item" width="50" height="50">
         </div>
