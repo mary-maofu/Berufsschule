@@ -6,17 +6,14 @@ module.exports = (API_KEY) => {
 
     router.get('/getMatches/:puuid', async (req, res) => {
         const { puuid } = req.params;
-        const { start = 0, count = 2 } = req.query; // Default start to 0 and count to 10 if not provided
+        const { start = 0, count = 5 } = req.query; // Default start to 0 and count to 5
 
         try {
             // Make a request to the Riot Games API to get match IDs
             const response = await axios.get(`https://europe.api.riotgames.com/lol/match/v5/matches/by-puuid/${puuid}/ids?start=${start}&count=${count}&api_key=${API_KEY}`);
+            const matchIds = response.data; // Extract match IDs from the response
 
-            // Extract match IDs from the response
-            const matchIds = response.data;
-
-            // Array to store filtered match details
-            const filteredMatches = [];
+            const filteredMatches = []; // Array to store filtered match details
 
             // Make API calls to get match details for each match ID
             for (const matchId of matchIds) {
@@ -35,6 +32,7 @@ module.exports = (API_KEY) => {
                         kills: participant.kills,
                         assists: participant.assists,
                         championId: participant.championId,
+                        teamId: participant.teamId, // Include teamId for each participant
                         items: [
                             participant.item0,
                             participant.item1,
@@ -46,10 +44,10 @@ module.exports = (API_KEY) => {
                         ],
                     })),
                     teams: matchResponse.data.info.teams.map(team => ({
+                        teamId: team.teamId, // Include teamId for each team
                         win: team.win,
                         bans: team.bans,
                     })),
-                    // Add more fields as needed
                 };
 
                 filteredMatches.push(filteredMatch);

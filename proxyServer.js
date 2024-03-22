@@ -1,7 +1,7 @@
 var express = require('express');
 var cors = require('cors');
 const axios = require('axios');
-const API_KEY = "RGAPI-bf82b06e-0166-45f5-b64f-47350c7fb234";
+const API_KEY = "RGAPI-4293a814-0078-4ed9-830a-88a7bea7f573";
 
 var getInfoByPuuid = require('./routes/getInfoByPuuid')(API_KEY);
 var searchByGameName = require('./routes/searchByGameName')(API_KEY);

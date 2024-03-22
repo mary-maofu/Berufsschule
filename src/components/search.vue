@@ -61,7 +61,9 @@ export default {
         return;
       }
 
+      this.errorMessage = ''; // Clear the error message on successful validation
       const [gameName, tagLine] = this.searchText.split('#');
+    
 
       axios.get(`http://localhost:4000/searchPlayer/${gameName}/${tagLine}`)
           .then(response => {
