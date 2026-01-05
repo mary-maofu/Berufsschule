@@ -45,4 +45,4 @@ Um dieses Projekt Lokal einzurichten sind ein paar Tools gebraucht:
 4. Server starten (cors errors umgehen):
 
     ```bash
-    npm start
+    npm start# Berufsschule
