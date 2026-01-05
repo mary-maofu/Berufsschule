@@ -26,9 +26,9 @@ export default {
 
 <style lang="scss">
 #app{
-  height: 100vh;
+  height: 80vh;
 }
 .search-container{
-  margin-bottom: 18%;
+  margin-bottom: 13%;
 }
 </style>

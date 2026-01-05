@@ -6,7 +6,7 @@ module.exports = (API_KEY) => {
 
     router.get('/getMatches/:puuid', async (req, res) => {
         const { puuid } = req.params;
-        const { start = 0, count = 5 } = req.query; // Default start to 0 and count to 5
+        const { start = 0, count = 2 } = req.query; // Default start to 0 and count to 5
 
         try {
             // Make a request to the Riot Games API to get match IDs

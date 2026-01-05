@@ -18,7 +18,9 @@
       <img :src="'src/components/icons/ranks/' + entry.tier + '.png'" width="140px" alt="Rank Icon">
     </div>
     <div class="right-card-side pt-4">
-    <h5 class="card-title"><p>Rank: {{ entry.tier }} {{ entry.rank }}</p></h5>
+    <h5 class="card-title">
+      <p>Rank: {{ entry.tier }} {{ entry.rank }}</p>
+    </h5>
       <div class="wins-loss">
   <p>Wins: {{ entry.wins }} Losses: {{ entry.losses }}</p>
   <p class="card-text">Win Rate: {{ calculateWinRate(entry.wins, entry.losses) }}%</p>
